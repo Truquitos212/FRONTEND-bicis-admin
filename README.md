@@ -1,32 +1,34 @@
-# React + TypeScript + Vite
+# 🚲 Bicis: Frontend con login de Cognito
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend en **React + TypeScript** para una tienda de bicicletas. Inicia sesión con el **Hosted UI de Amazon Cognito** (OAuth, `signInWithRedirect`) y muestra el catálogo consumiendo una API protegida con JWT.
 
-Currently, two official plugins are available:
+Proyecto de la asignatura **Desarrollo Cloud Native I (DSY1107)**, DuocUC. Backend: [backend-claud](https://github.com/Truquitos212/backend-claud).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React + TypeScript + Vite
+- AWS Amplify (Auth) con OAuth / Hosted UI de Cognito
+- API REST Spring Boot (`/api/bicicletas`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades
 
-## Expanding the Oxlint configuration
+- Login y logout con redirección al Hosted UI de Cognito
+- Catálogo de bicicletas obtenido desde la API con el token de la sesión
+- Aviso en pantalla si falta alguna variable de configuración
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Cómo correrlo
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+cp .env.example .env   # completar
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+| Variable | Descripción |
+|---|---|
+| `VITE_COGNITO_USER_POOL_ID` | ID del user pool |
+| `VITE_COGNITO_CLIENT_ID` | ID del app client |
+| `VITE_COGNITO_DOMAIN` | Dominio del Hosted UI |
+| `VITE_REDIRECT_SIGN_IN` | URL de retorno tras el login |
+| `VITE_REDIRECT_SIGN_OUT` | URL de retorno tras el logout |
+| `VITE_API_URL` | URL base de la API |
